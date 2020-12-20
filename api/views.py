@@ -43,11 +43,19 @@ def TeamGetView(request, pk):
 @api_view(['GET'])
 def InsertData(request):
     try:
+        
         for i in teamsdata:
+            queryset = Team.objects.all()
+            print(i)
             serializer_obj = TeamListSerializer(i)
+            print(serializer_obj)
             if serializer_obj.is_valid():
-                serializer_obj.save()
-            return Response(status=status.HTTP_200_OK)
+                serializer_obj.add()
+                response_data = {
+                'team_name': "asdklf",
+                
+            }
+        return Response(response_data,status=status.HTTP_200_OK)
     except:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
