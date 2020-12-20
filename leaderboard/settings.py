@@ -53,7 +53,7 @@ MIDDLEWARE = [
     
 ]
 CORS_ORIGIN_WHITELIST = (
-     'localhost:3000/'
+     'http://localhost:3000/'
 )
 CORS_ORIGIN_ALLOW_ALL = True 
 
@@ -100,12 +100,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'TeamsDB',
-        'CLIENT': {
-            'host': 'mongodb://mongodb:27017',
-            'username': 'root',
-            'password': 'mongoadmin',
-            'authSource': 'admin',
-            'authMechanism': 'SCRAM-SHA-1',}       
+               
     }
 }
 
