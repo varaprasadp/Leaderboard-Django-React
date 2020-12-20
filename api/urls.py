@@ -15,10 +15,13 @@ Including another URLconf
 """
 
 from django.urls import path
-from .views import TeamListView, TeamCreateView, TeamUpdateView, TeamDeleteView, MatchCreateView, TeamGetView, GetScoreView
+from .views import TeamListView, InsertData, TeamCreateView, TeamUpdateView, TeamDeleteView, MatchCreateView, TeamGetView, GetScoreView
 urlpatterns = [
     # api url for retrieving  all teams data.
     path('teams', TeamListView.as_view()),
+
+    # api for inserting data into database.
+    path('teamsInsert', InsertData),
 
     # api url for updating teams score.
     path('teamUpdate', TeamUpdateView.as_view()),

@@ -8,6 +8,9 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from django.core.paginator import Paginator
 from rest_framework.parsers import JSONParser
+import json
+with open('E:/hackdemo/leaderboard/api/teamsdata.json') as f:
+    teamsdata = json.load(f)
 # Create your views here.
 
 # Class based view for creating a team.
@@ -22,7 +25,6 @@ class TeamCreateView(generics.CreateAPIView):
 class TeamListView(generics.ListAPIView):
     queryset = Team.objects.all()
     serializer_class = TeamListSerializer
-    paginate_by = 2
 
 # Class based view for retrieving single team data based on team name,
 # but not used in the project because material-table from material-ui took care of it.
@@ -36,6 +38,18 @@ def TeamGetView(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer_class = TeamListSerializer(queryset)
     return Response(serializer_class.data, status=status.HTTP_200_OK)
+
+# Inserting data into database.
+@api_view(['GET'])
+def InsertData(request):
+    try:
+        for i in teamsdata:
+            serializer_obj = TeamListSerializer(i)
+            if serializer_obj.is_valid():
+                serializer_obj.save()
+            return Response(status=status.HTTP_200_OK)
+    except:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 # Class based view for retrieving single team data based on score,
 # but not used in the project because material-table from material-ui took care of it.
