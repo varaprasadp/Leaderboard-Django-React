@@ -50,7 +50,7 @@ def InsertData(request):
             serializer_obj = TeamListSerializer(i)
             print(serializer_obj)
             if serializer_obj.is_valid():
-                serializer_obj.add()
+                serializer_obj.insert()
                 response_data = {
                 'team_name': "asdklf",
                 
