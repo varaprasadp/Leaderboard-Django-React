@@ -1,0 +1,5 @@
+django
+djangorestframework
+djongo
+django-cors-headers
+mongo
